@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def get_numeric_columns(df:pd.DataFrame) -> list[str]:
+def get_numeric_statistics(df:pd.DataFrame) -> dict:
     numeric_df =  df.select_dtypes(
         include="number"
     )
@@ -34,12 +34,12 @@ def get_basic_profile(df:pd.DataFrame) -> dict:
             for column, dtype in df.dtypes.items()
         },
         
-        "unique_columns": {
+        "unique_values": {
             column: df[column].nunique()
             for column in df.columns
         },
         
-        "numeric_columns": get_numeric_columns(df),
+        "numeric_statistics": get_numeric_statistics(df),
         
         "categorical_columns": get_categorical_columns(df),
         
